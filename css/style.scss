@@ -1,0 +1,1037 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap");
+
+// === MIXINS ===
+@mixin roboto {
+    font-family: "Roboto", sans-serif;
+}
+
+@mixin quicksand {
+    font-family: "Quicksand", sans-serif;
+}
+
+@mixin list-null {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+// === / MIXINS ===
+
+// === VARIABLES ===
+$base: 4px;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-bold: 700;
+
+$fs-sm: 12px;
+$fs-md: 15px;
+$fs-lg: 18px;
+$fs-xl: 48px;
+
+$padding-vertical-xs: $base * 5;
+$padding-vertical-sm: $base * 15;
+$padding-vertical: $base * 30;
+
+$transition: 0.2s;
+
+// White
+$color-white: #fff;
+// Red
+$color-danger-400: #ffd7d7;
+$color-danger-500: #d43f3f;
+// Cian
+$color-cian-500: #35aaff;
+// Yellow
+$color-warning-500: #ffc735;
+// Gray
+$color-primary-200: #e8ecf4; // фон кнопок grayscale
+$color-primary-300: #d1d6e3; // цвет серой кнопки без bg (тень от кнопок) / цвет неактивных точек слайдера
+$color-primary-400: #b6bac7; // цвет иконок в хедере / цвет текста в features / текст кнопок grayscale
+$color-primary-500: #8d96bd; // цвет основного текста
+$color-primary-600: #7382a3; // цвет текста хедера и футера / текст в input
+$color-primary-700: #495274; // цвет активного тригера в аккордионе
+// Blue
+$color-secondary-100: #f5f8ff; // фон plan-n-manage / фон blog / / фон newsletters / низ градиента в quotes
+$color-secondary-200: #f1f5ff; // фон hero-image / тень item-quotes
+$color-secondary-300: #e9efff; // фон правой части stats / тень в blog / верх градиента в quotes
+$color-secondary-400: #d2e1ff; // фоновый цвет синих кнопок (и разделителя) / тень картинок в blog / текст кнопок no-bg-inverted
+$color-secondary-500: #a0b4ff; // границы кнопки no-bg-inverted
+$color-secondary-600: #6888ff; // фон левой части stats / текст правой части stats / верх градиента get started
+$color-secondary-700: #4c85ff; // цвет текста синих кнопок (и лого хедера и футера) / цвет активных точек слайдера / низ градиента get started
+$color-secondary-800: #4074f8; // заголовки блоков в features
+$color-secondary-900: #3d4f9f; // цвет заголовков
+// === / VARIABLES ===
+
+// === COMMON ===
+body {
+    @include roboto;
+
+    color: $color-primary-500;
+}
+
+.section-outer {
+    border-bottom: 1px solid $color-secondary-400;
+}
+
+.section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: $padding-vertical;
+    padding-bottom: $padding-vertical;
+
+    &--wide {
+        max-width: 1200px;
+    }
+}
+
+.input {
+    @include quicksand();
+
+    padding: $base * 3 $base * 4;
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+    color: $color-primary-600;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    background: $color-primary-200;
+    border-radius: $base/2;
+    outline: none;
+
+    &--size-lg {
+        padding: $base * 5 $base * 6;
+        border-radius: $base;
+    }
+}
+
+.btn {
+    @include quicksand;
+
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid transparent;
+    padding: $base * 3 $base * 4;
+    background: none;
+    font-weight: $fw-bold;
+    font-size: $fs-sm;
+    border-radius: $base/2;
+    text-decoration: none;
+    transition: $transition;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &--size-lg {
+        padding: $base * 5 $base * 15;
+        border-radius: $base;
+    }
+
+    &--primary {
+        color: $color-secondary-700;
+        background-color: $color-secondary-400;
+
+        &:hover {
+            background-color: darken($color-secondary-400, 5%);
+        }
+    }
+
+    &--secondary {
+        background-color: $color-secondary-700;
+        color: $color-white;
+
+        &:hover {
+            background-color: darken($color-secondary-700, 15%);
+        }
+
+        &-inverted {
+            color: $color-secondary-700;
+            background-color: $color-white;
+
+            &:hover {
+                background-color: darken($color-white, 5%);
+            }
+        }
+    }
+
+    &--grayscale {
+        color: $color-primary-600;
+        background-color: $color-primary-200;
+
+        &:hover {
+            background-color: darken($color-primary-200, 5%);
+        }
+    }
+
+    &--no-bg {
+        color: $color-primary-400;
+        border: 1px solid $color-primary-300;
+
+        &:hover {
+            color: darken($color-primary-400, 15%);
+            border-color: darken($color-primary-300, 15%);
+        }
+
+        &-inverted {
+            color: $color-secondary-400;
+            border-color: $color-secondary-500;
+
+            &:hover {
+                color: lighten($color-secondary-400, 15%);
+                border-color: lighten($color-secondary-500, 15%);
+            }
+        }
+    }
+
+    &--danger {
+        color: $color-danger-500;
+        background-color: $color-danger-400;
+
+        &:hover {
+            background-color: darken($color-danger-400, 5%);
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include quicksand;
+    margin: 0;
+    padding: 0;
+    font-weight: $fw-regular;
+    color: $color-secondary-900;
+}
+
+h2 {
+    margin-bottom: $base * 7;
+    font-size: 48px;
+}
+h3 {
+    margin-bottom: $base * 7;
+    font-size: 36px;
+}
+h4 {
+    margin-bottom: $base * 23;
+    font-size: 24px;
+}
+h5 {
+    @include roboto;
+    font-size: 10px;
+    font-weight: $fw-medium;
+    margin-bottom: $base * 4;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.ta-c {
+    text-align: center;
+}
+
+.dots {
+    @include list-null();
+
+    display: flex;
+    justify-content: center;
+
+    &__item {
+        width: $base * 2;
+        height: $base * 2;
+        cursor: pointer;
+        background-color: $color-primary-300;
+        border-radius: 100%;
+        transition: $transition;
+
+        &--active {
+            background-color: $color-secondary-700;
+        }
+
+        & + & {
+            margin-left: $base * 3;
+        }
+    }
+}
+// TODO: Правильно настроить hover по макету
+.btn-group {
+    display: inline-flex;
+
+    .btn:nth-child(1) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .btn:nth-child(2) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+}
+// === / COMMON ===
+
+// === HEADER ===
+.section-header {
+    .section-inner {
+        padding-top: $padding-vertical-xs;
+        padding-bottom: $padding-vertical-xs;
+    }
+}
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+
+    &__link {
+        display: block;
+        background-color: $color-secondary-700;
+        width: $base * 6;
+        height: $base * 6;
+        border-radius: 100%;
+    }
+}
+
+.nav {
+    margin-left: $base * 18;
+}
+
+.nav-wrapper {
+    @include list-null();
+
+    display: flex;
+
+    &__item {
+        & + & {
+            margin-left: $base * 10;
+        }
+
+        &-link {
+            @include quicksand;
+
+            font-size: $fs-sm;
+            font-weight: $fw-medium;
+            color: $color-primary-600;
+            text-decoration: none;
+            transition: $transition;
+
+            &:hover {
+                color: $color-secondary-700;
+            }
+
+            &--active {
+                font-weight: $fw-bold;
+                color: $color-secondary-700;
+            }
+        }
+    }
+}
+
+.socials {
+    margin-left: auto;
+}
+
+.socials-wrapper {
+    @include list-null();
+
+    display: flex;
+    align-items: center;
+
+    &__item {
+        & + & {
+            margin-left: $base * 10;
+        }
+
+        &-link {
+            path {
+                fill: $color-primary-400;
+                transition: $transition;
+            }
+
+            &:hover {
+                path {
+                    fill: $color-secondary-700;
+                }
+            }
+        }
+    }
+}
+
+.btn-wrapper {
+    margin-left: $base * 11;
+}
+// === / HEADER ===
+
+// === HERO-IMAGE ===
+.section-hero-image {
+    position: relative;
+
+    .dots {
+        position: absolute;
+        bottom: $base * 7;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.slider-hero-image {
+    @include list-null();
+
+    &__item {
+        text-align: center;
+        height: $base * 130;
+        background-position: 100% 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        &-content {
+            h2 {
+                font-weight: $fw-light;
+
+                span {
+                    font-weight: $fw-medium;
+                }
+            }
+
+            .text {
+                max-width: 55%;
+                margin: 0 auto $base * 5;
+                line-height: 2;
+            }
+        }
+    }
+}
+
+.icon-play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $base * 13;
+    height: $base * 13;
+    background-color: $color-white;
+    border-radius: 100%;
+    box-shadow: 0 $base * 2 $base * 12 rgba($color-primary-300, 0.6);
+
+    svg {
+        margin-top: $base/2;
+        margin-left: $base/2;
+        width: $base * 3;
+        height: $base * 3;
+    }
+}
+// === / HERO-IMAGE ===
+
+// === CUSTOMERS ===
+.section-customers {
+    border-bottom: none;
+
+    .section-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: $padding-vertical-sm;
+        padding-bottom: $padding-vertical-sm;
+
+        a {
+            opacity: 0.3;
+            transition: $transition;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+// === / CUSTOMERS ===
+
+// === PLAN-AND-MANAGE ===
+.section-plan-and-manage {
+    position: relative;
+    overflow: hidden;
+    background-color: $color-secondary-100;
+
+    &__content {
+        width: 50%;
+    }
+
+    .aside-image {
+        position: absolute;
+        top: 0;
+        left: 50%;
+    }
+
+    h3 {
+        font-weight: $fw-light;
+
+        span {
+            font-weight: $fw-medium;
+        }
+    }
+
+    .text {
+        margin-bottom: $base * 12;
+        line-height: 2;
+    }
+
+    .btn-group {
+        svg {
+            margin-left: $base;
+        }
+    }
+}
+// === / PLAN-AND-MANAGE ===
+
+// === FEATURES ===
+.section-features {
+    background: url(../img/bg-features-clouds.svg) no-repeat center;
+
+    h4 {
+        font-weight: $fw-medium;
+    }
+
+    .btns {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+}
+
+.features-list {
+    @include list-null();
+
+    display: flex;
+    justify-content: space-around;
+    margin: 0 0 $base * 23;
+    text-align: center;
+
+    &__item {
+        position: relative;
+        flex-basis: 15%;
+
+        &:not(:first-child)::before {
+            position: absolute;
+            top: 50%;
+            right: 124%;
+            width: $base * 7;
+            height: 1px;
+            content: "";
+            background-color: $color-secondary-400;
+        }
+
+        &-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto $base * 8;
+            width: $base * 17;
+            height: $base * 17;
+            border-radius: 100%;
+            background-color: $color-secondary-100;
+        }
+
+        &-title {
+            color: $color-secondary-800;
+            font-size: $fs-md;
+            font-weight: $fw-bold;
+            margin-bottom: $base * 7;
+        }
+
+        &-text {
+            color: $color-primary-400;
+            font-size: $fs-sm;
+            font-weight: $fw-medium;
+            line-height: 2;
+        }
+    }
+}
+
+.or-block {
+    display: inline-flex;
+    align-items: center;
+    color: $color-primary-400;
+    font-size: $fs-sm;
+    font-weight: $fw-medium;
+    line-height: $base * 10;
+    letter-spacing: 1px;
+    margin: 0 $base * 4;
+
+    &::before {
+        display: block;
+        content: "";
+        margin-right: $base * 4;
+        width: $base * 4;
+        height: 1px;
+        background-color: $color-secondary-400;
+    }
+    &::after {
+        display: block;
+        content: "";
+        margin-left: $base * 4;
+        width: $base * 4;
+        height: 1px;
+        background-color: $color-secondary-400;
+    }
+}
+// === / FEATURES ===
+
+// === STATS ===
+.section-stats {
+    @include quicksand;
+
+    display: flex;
+    background-color: $color-secondary-300;
+
+    &__icon {
+    }
+
+    &__number {
+        font-size: $fs-xl;
+        margin: $base * 6 0;
+    }
+    &__text {
+        width: 30%;
+        font-size: $fs-lg;
+        font-weight: $fw-medium;
+        line-height: 1.4;
+    }
+
+    &__left,
+    &__right {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 50%;
+        padding: $base * 16 $base * 22;
+    }
+
+    &__left {
+        align-items: flex-end;
+        color: $color-white;
+        text-align: right;
+        background-color: $color-secondary-600;
+    }
+
+    &__right {
+        color: $color-secondary-600;
+    }
+}
+// === / STATS ===
+
+// === BLOG ===
+.section-blog {
+    background-color: $color-secondary-100;
+    h4 {
+        font-weight: $fw-medium;
+    }
+}
+
+.slider-wrapper {
+    margin-bottom: $base * 25;
+    position: relative;
+}
+
+.slider-blog {
+    @include list-null();
+
+    margin-bottom: $base * 25;
+    background-color: $color-white;
+    box-shadow: 0 $base * 4 $base * 12 $color-secondary-300;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: $base * 16 $base * 10;
+
+        &-gallery,
+        &-content {
+            flex-basis: 50%;
+        }
+
+        &-gallery {
+            display: grid;
+            grid-template-rows: repeat(2, $base * 30);
+            grid-template-columns: repeat(3, $base * 30);
+            grid-gap: $base * 3;
+
+            .image-link {
+                position: relative;
+                display: block;
+                overflow: hidden;
+                border-radius: $base;
+                box-shadow: 0 $base * 4 $base * 25
+                    rgba($color-secondary-400, 0.5);
+
+                .loupe {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    display: block;
+                    width: $base * 16;
+                    height: $base * 16;
+                    background: $color-white url(../img/icon-loupe.svg)
+                        no-repeat center;
+                    border-radius: 100%;
+                    transform: translate(-50%, -50%);
+                    opacity: 0;
+                    transition: $transition;
+                }
+
+                &:hover {
+                    .loupe {
+                        opacity: 1;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &::before {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    content: "";
+                    opacity: 0.6;
+                }
+
+                &--b {
+                    grid-row: 1 / 3;
+                    grid-column: 1 / 3;
+
+                    &::before {
+                        background: linear-gradient(
+                            transparent,
+                            $color-warning-500
+                        );
+                    }
+                }
+
+                &--s-1 {
+                    grid-row: 1 / 2;
+                    grid-column: 3 / 4;
+
+                    &::before {
+                        background: linear-gradient(
+                            transparent,
+                            $color-danger-500
+                        );
+                    }
+                }
+
+                &--s-2 {
+                    grid-row: 2 / 3;
+                    grid-column: 3 / 4;
+
+                    &::before {
+                        background: linear-gradient(
+                            transparent,
+                            $color-cian-500
+                        );
+                    }
+                }
+            }
+        }
+
+        &-content {
+            margin-left: 5%;
+
+            .text {
+                margin-bottom: $base * 7;
+                font-size: $fs-md;
+                line-height: 2;
+            }
+        }
+    }
+}
+
+.btn-blog {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: $base * 10;
+    height: $base * 10;
+    background: url(../img/icon-blog-arrow.svg) no-repeat center;
+
+    &--prev {
+        right: 100%;
+        margin-right: $base * 16;
+        transform: translateY(-50%);
+    }
+
+    &--next {
+        left: 100%;
+        margin-left: $base * 16;
+        transform: translateY(-50%) rotate(180deg);
+    }
+}
+// === / BLOG ===
+
+// === QUOTES ===
+.section-quotes {
+    background: linear-gradient($color-secondary-300, $color-secondary-100);
+
+    .section-inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h3 {
+        font-weight: $fw-medium;
+    }
+
+    &__left,
+    &__right {
+        flex-basis: 45%;
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .text {
+            line-height: 2;
+            font-size: $fs-sm;
+            font-weight: $fw-medium;
+        }
+    }
+}
+
+.slider-quotes {
+    @include list-null();
+
+    margin-bottom: $base * 20;
+
+    &__item {
+        position: relative;
+        padding: $base * 10 $base * 17 $base * 15;
+        // border: 1px solid $color-secondary-400;
+        background-color: $color-white;
+        box-shadow: 0 $base $base * 12 $color-secondary-400;
+
+        &-text {
+            font-size: $fs-md;
+            line-height: 2;
+            color: $color-primary-600;
+        }
+
+        &-photo {
+            $height: $base * 15;
+
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: $base * 15;
+            height: $height;
+            margin-top: -$height/2;
+            overflow: hidden;
+            border-radius: 100%;
+            background-color: $color-white;
+            transform: translateX(-50%);
+        }
+    }
+}
+// === / QUOTES ===
+
+// === FAQ ===
+.section-faq {
+    h4 {
+        font-weight: $fw-medium;
+    }
+}
+
+.faq-accordion {
+    @include list-null();
+
+    &__item {
+        $parent: &;
+
+        border-bottom: 1px solid $color-secondary-400;
+
+        &--active {
+            .arrow {
+                stroke: $color-primary-700;
+            }
+
+            #{$parent}-trigger {
+                color: $color-primary-700;
+                font-weight: $fw-bold;
+
+                &-icon {
+                    transform: rotate(0);
+
+                    .arrow {
+                        stroke: $color-primary-700;
+                    }
+                }
+            }
+
+            #{$parent}-content {
+                display: flex;
+            }
+        }
+
+        &-trigger {
+            @include quicksand();
+
+            display: flex;
+            font-weight: $fw-medium;
+            padding: $base * 8 $base * 4;
+            cursor: pointer;
+
+            &-icon {
+                width: $base * 4;
+                margin-right: $base * 6;
+                text-align: center;
+                transform: rotate(180deg);
+
+                .arrow {
+                    stroke: $color-primary-500;
+                }
+            }
+        }
+
+        &-content {
+            display: none;
+            align-items: center;
+            padding: 0 $base * 4 $base * 8;
+
+            &-text {
+                padding-left: $base * 14;
+                flex-grow: 1;
+                line-height: 2;
+            }
+
+            &-btn {
+                margin-left: $base * 15;
+            }
+        }
+    }
+}
+// === / FAQ ===
+
+// === GET-STARTED ===
+.section-get-started {
+    position: relative;
+    color: $color-white;
+    background: linear-gradient($color-secondary-600, $color-secondary-700);
+    text-align: center;
+
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: url(../img/bg-clouds.svg) no-repeat center;
+        z-index: 5;
+    }
+
+    .section-inner {
+        position: relative;
+        z-index: 10;
+    }
+
+    h2,
+    h5 {
+        color: $color-white;
+    }
+
+    h2 {
+        font-weight: $fw-light;
+
+        span {
+            font-weight: $fw-medium;
+        }
+    }
+
+    .text {
+        max-width: 75%;
+        margin: 0 auto $base * 14;
+        line-height: 2;
+        font-size: $fs-md;
+    }
+}
+// === / GET-STARTED ===
+
+// === NEWSLETTER ===
+.section-newsletter {
+    background-color: $color-white;
+
+    .section-inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__left {
+        flex-basis: 35%;
+
+        &-title {
+            @include quicksand();
+
+            color: $color-secondary-900;
+            font-size: $fs-lg;
+            font-weight: $fw-bold;
+            margin-bottom: $base * 5;
+        }
+
+        &-text {
+            font-size: $fs-md;
+            line-height: 2;
+        }
+    }
+
+    &__right {
+        flex-basis: 50%;
+    }
+}
+
+.form-newsletter {
+    display: flex;
+
+    &__input {
+        flex-grow: 1;
+    }
+
+    &__btn {
+        margin-left: $base * 3;
+    }
+}
+// === / NEWSLETTER ===
+
+// === FOOTER ===
+.section-footer {
+    border-bottom: 0;
+
+    .section-inner {
+        padding-top: $padding-vertical-sm;
+        padding-bottom: $padding-vertical-sm;
+    }
+}
+
+.copyright {
+    @include quicksand();
+
+    margin-top: $base * 7;
+    margin-left: $base * 24;
+    font-size: $fs-sm;
+    font-weight: $fw-medium;
+    color: rgba($color-primary-500, 0.7);
+}
+// === / FOOTER ===

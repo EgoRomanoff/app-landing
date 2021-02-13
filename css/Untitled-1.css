@@ -1,0 +1,92 @@
+.a { color: #efeff7; }
+.a { color: #fcfdff; }
+.a { color: #f4f7ff; }
+.a { color: #f5f8ff; }
+.a { color: #d1d6e3; }
+.a { color: #d1d1e4; }
+.a { color: #c9d1e7; }
+.a { color: #aeb8d0; }
+.a { color: #adb4d2; }
+.a { color: #adb3cb; }
+.a { color: #8d96bd; }
+.a { color: #8e96b7; }
+.a { color: #7a85bd; }
+.a { color: #7382a3; }
+.a { color: #676f95; }
+.a { color: #565f82; }
+.a { color: #495274; }
+
+
+.a { color: #d8e3fe; }
+.a { color: #d2e1ff; }
+.a { color: #c7d3ff; }
+.a { color: #a0b4ff; }
+.a { color: #6888ff; }
+.a { color: #5e81fe; }
+.a { color: #5283ff; }
+.a { color: #6188ff; }
+.a { color: #5e80ff; }
+.a { color: #3a79ef; }
+.a { color: #4c85ff; }
+.a { color: #4074f8; }
+.a { color: #3d4f9f; }
+
+
+.a { color: #e8ecf4; }
+.a { color: #dae4fe; }
+.a { color: #f1f5ff; }
+.a { color: #e9efff; }
+.a { color: #eff4ff; }
+.a { color: #e5ebf8; }
+.a { color: #eaebff; }
+.a { color: #f6f9ff; }
+.a { color: #d8e2fe; }
+.a { color: #f3f5fa; }
+
+.a { color: #ffd7d7; }
+.a { color: #ffc735; }
+.a { color: #d43f3f; }
+.a { color: #ff3535; }
+.a { color: #35aaff; }
+
+$color-divider: #d8e3fe;
+
+$color-white: #fff;
+
+// Red
+$color-danger-500: #ff3535;
+$color-danger-600: #d43f3f;
+
+// Cian
+$color-cian-500: #35aaff;
+
+// Yellow
+$color-warning-500: #ffc735;
+
+// Gray
+$color-primary-50: #d1d1e4;
+$color-primary-100: #c7d3ff;
+$color-primary-200: #aeb8d0;
+$color-primary-300: #adb4d2;
+$color-primary-400: #8e96b7;
+$color-primary-500: #8d96bd;
+$color-primary-600: #7382a3;
+$color-primary-700: #7a85ad;
+$color-primary-800: #676f95;
+$color-primary-900: #495274;
+
+$color-primary: #495274;
+
+// Blue
+$color-secondary-50: #a0b4ff;
+$color-secondary-100: #6888ff;
+$color-secondary-200: #6188ff;
+$color-secondary-300: #5e80ff;
+$color-secondary-400: #5e81fe;
+$color-secondary-500: #4c85ff;
+$color-secondary-600: #5283ff;
+$color-secondary-700: #3a79ff;
+$color-secondary-800: #4074f8;
+$color-secondary-900: #3d4f9f;
+
+$color-secondary: #6188ff;
