@@ -141,27 +141,24 @@ h6 {
 }
 
 h2 {
-  margin-bottom: 28px;
-  font-size: 48px;
-}
-
-h3 {
-  margin-bottom: 28px;
-  font-size: 36px;
-}
-
-h4 {
-  margin-bottom: 92px;
-  font-size: 24px;
-}
-
-h5 {
   font-family: "Roboto", sans-serif;
   font-size: 10px;
   font-weight: 500;
   margin-bottom: 16px;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+.section-subtitle {
+  font-family: "Quicksand", sans-serif;
+  color: #3d4f9f;
+  font-size: 48px;
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+.section-subtitle span {
+  font-weight: 500;
 }
 
 .ta-c {
@@ -343,14 +340,6 @@ h5 {
   background-repeat: no-repeat;
 }
 
-.slider-hero-image__item-content h2 {
-  font-weight: 300;
-}
-
-.slider-hero-image__item-content h2 span {
-  font-weight: 500;
-}
-
 .slider-hero-image__item-content .text {
   max-width: 55%;
   margin: 0 auto 20px;
@@ -426,14 +415,6 @@ h5 {
   left: 50%;
 }
 
-.section-plan-and-manage h3 {
-  font-weight: 300;
-}
-
-.section-plan-and-manage h3 span {
-  font-weight: 500;
-}
-
 .section-plan-and-manage .text {
   margin-bottom: 48px;
   line-height: 2;
@@ -447,8 +428,10 @@ h5 {
   background: url(../img/bg-features-clouds.svg) no-repeat center;
 }
 
-.section-features h4 {
+.section-features .section-subtitle {
   font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 92px;
 }
 
 .section-features .btns {
@@ -508,6 +491,7 @@ h5 {
 }
 
 .features-list__item-title {
+  font-family: "Roboto", sans-serif;
   color: #4074f8;
   font-size: 15px;
   font-weight: 700;
@@ -604,8 +588,10 @@ h5 {
   background-color: #f5f8ff;
 }
 
-.section-blog h4 {
+.section-blog .section-subtitle {
   font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 92px;
 }
 
 .slider-wrapper {
@@ -740,6 +726,11 @@ h5 {
   margin-left: 5%;
 }
 
+.slider-blog__item-content h3 {
+  font-size: 36px;
+  margin-bottom: 28px;
+}
+
 .slider-blog__item-content .text {
   margin-bottom: 28px;
   font-size: 15px;
@@ -783,8 +774,9 @@ h5 {
           justify-content: space-between;
 }
 
-.section-quotes h3 {
+.section-quotes .section-inner .section-subtitle {
   font-weight: 500;
+  font-size: 36px;
 }
 
 .section-quotes__left, .section-quotes__right {
@@ -846,8 +838,9 @@ h5 {
           transform: translateX(-50%);
 }
 
-.section-faq h4 {
+.section-faq .section-inner .section-subtitle {
   font-weight: 500;
+  font-size: 24px;
 }
 
 .faq-accordion {
@@ -864,11 +857,6 @@ h5 {
   stroke: #495274;
 }
 
-.faq-accordion__item--active .faq-accordion__item-trigger {
-  color: #495274;
-  font-weight: 700;
-}
-
 .faq-accordion__item--active .faq-accordion__item-trigger-icon {
   -webkit-transform: rotate(0);
           transform: rotate(0);
@@ -876,6 +864,12 @@ h5 {
 
 .faq-accordion__item--active .faq-accordion__item-trigger-icon .arrow {
   stroke: #495274;
+}
+
+.faq-accordion__item--active .faq-accordion__item-trigger-text {
+  color: #495274;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .faq-accordion__item--active .faq-accordion__item-content {
@@ -889,7 +883,6 @@ h5 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-weight: 500;
   padding: 32px 16px;
   cursor: pointer;
 }
@@ -904,6 +897,12 @@ h5 {
 
 .faq-accordion__item-trigger-icon .arrow {
   stroke: #8d96bd;
+}
+
+.faq-accordion__item-trigger-text {
+  color: #8d96bd;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .faq-accordion__item-content {
@@ -950,20 +949,15 @@ h5 {
   z-index: 10;
 }
 
-.section-get-started h2,
-.section-get-started h5 {
+.section-get-started .section-inner h2 {
   color: #fff;
 }
 
-.section-get-started h2 {
-  font-weight: 300;
+.section-get-started .section-inner .section-subtitle {
+  color: #fff;
 }
 
-.section-get-started h2 span {
-  font-weight: 500;
-}
-
-.section-get-started .text {
+.section-get-started .section-inner .text {
   max-width: 75%;
   margin: 0 auto 56px;
   line-height: 2;
@@ -990,9 +984,11 @@ h5 {
 
 .section-newsletter__left-title {
   font-family: "Quicksand", sans-serif;
+  text-transform: none;
   color: #3d4f9f;
   font-size: 18px;
   font-weight: 700;
+  letter-spacing: normal;
   margin-bottom: 20px;
 }
 

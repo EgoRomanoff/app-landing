@@ -198,7 +198,7 @@ h3,
 h4,
 h5,
 h6 {
-    @include quicksand;
+    @include quicksand();
     margin: 0;
     padding: 0;
     font-weight: $fw-regular;
@@ -206,24 +206,43 @@ h6 {
 }
 
 h2 {
-    margin-bottom: $base * 7;
-    font-size: 48px;
-}
-h3 {
-    margin-bottom: $base * 7;
-    font-size: 36px;
-}
-h4 {
-    margin-bottom: $base * 23;
-    font-size: 24px;
-}
-h5 {
-    @include roboto;
+    @include roboto();
     font-size: 10px;
     font-weight: $fw-medium;
     margin-bottom: $base * 4;
     letter-spacing: 1px;
     text-transform: uppercase;
+
+    // margin-bottom: $base * 7;
+    // font-size: 48px;
+}
+// h3 {
+//     margin-bottom: $base * 7;
+//     font-size: 36px;
+// }
+// h4 {
+//     margin-bottom: $base * 23;
+//     font-size: 24px;
+// }
+// h5 {
+//     @include roboto;
+//     font-size: 10px;
+//     font-weight: $fw-medium;
+//     margin-bottom: $base * 4;
+//     letter-spacing: 1px;
+//     text-transform: uppercase;
+// }
+
+.section-subtitle {
+    @include quicksand();
+    color: $color-secondary-900;
+    font-size: 48px;
+    margin-bottom: $base * 7;
+    font-weight: $fw-light;
+
+    span {
+        font-weight: $fw-medium;
+    }
 }
 
 .ta-c {
@@ -294,7 +313,6 @@ h5 {
 }
 
 .logo {
-
     &__link {
         display: block;
         background-color: $color-secondary-700;
@@ -397,13 +415,13 @@ h5 {
         background-repeat: no-repeat;
 
         &-content {
-            h2 {
-                font-weight: $fw-light;
+            // .section-subtitle {
+            //     font-weight: $fw-light;
 
-                span {
-                    font-weight: $fw-medium;
-                }
-            }
+            //     span {
+            //         font-weight: $fw-medium;
+            //     }
+            // }
 
             .text {
                 max-width: 55%;
@@ -472,13 +490,13 @@ h5 {
         left: 50%;
     }
 
-    h3 {
-        font-weight: $fw-light;
+    // .section-subtitle {
+    //     font-weight: $fw-light;
 
-        span {
-            font-weight: $fw-medium;
-        }
-    }
+    //     span {
+    //         font-weight: $fw-medium;
+    //     }
+    // }
 
     .text {
         margin-bottom: $base * 12;
@@ -496,9 +514,11 @@ h5 {
 // === FEATURES ===
 .section-features {
     background: url(../img/bg-features-clouds.svg) no-repeat center;
-
-    h4 {
+    // small subtitle
+    .section-subtitle {
         font-weight: $fw-medium;
+        font-size: 24px;
+        margin-bottom: $base * 23;
     }
 
     .btns {
@@ -542,6 +562,8 @@ h5 {
         }
 
         &-title {
+            @include roboto();
+
             color: $color-secondary-800;
             font-size: $fs-md;
             font-weight: $fw-bold;
@@ -631,9 +653,16 @@ h5 {
 // === BLOG ===
 .section-blog {
     background-color: $color-secondary-100;
-    h4 {
+
+    .section-subtitle {
         font-weight: $fw-medium;
+        font-size: 24px;
+        margin-bottom: $base * 23;
     }
+
+    // h4 {
+    //     font-weight: $fw-medium;
+    // }
 }
 
 .slider-wrapper {
@@ -750,6 +779,11 @@ h5 {
         &-content {
             margin-left: 5%;
 
+            h3 {
+                font-size: 36px;
+                margin-bottom: $base * 7;
+            }
+
             .text {
                 margin-bottom: $base * 7;
                 font-size: $fs-md;
@@ -788,10 +822,11 @@ h5 {
     .section-inner {
         display: flex;
         justify-content: space-between;
-    }
 
-    h3 {
-        font-weight: $fw-medium;
+        .section-subtitle {
+            font-weight: $fw-medium;
+            font-size: 36px;
+        }
     }
 
     &__left,
@@ -850,8 +885,12 @@ h5 {
 
 // === FAQ ===
 .section-faq {
-    h4 {
-        font-weight: $fw-medium;
+    .section-inner {
+        .section-subtitle {
+            font-weight: $fw-medium;
+            font-size: 24px;
+            // margin-bottom: $base * 23;
+        }
     }
 }
 
@@ -869,15 +908,18 @@ h5 {
             }
 
             #{$parent}-trigger {
-                color: $color-primary-700;
-                font-weight: $fw-bold;
-
                 &-icon {
                     transform: rotate(0);
 
                     .arrow {
                         stroke: $color-primary-700;
                     }
+                }
+
+                &-text {
+                    color: $color-primary-700;
+                    font-size: $fs-md;
+                    font-weight: $fw-bold;
                 }
             }
 
@@ -890,7 +932,6 @@ h5 {
             @include quicksand();
 
             display: flex;
-            font-weight: $fw-medium;
             padding: $base * 8 $base * 4;
             cursor: pointer;
 
@@ -903,6 +944,12 @@ h5 {
                 .arrow {
                     stroke: $color-primary-500;
                 }
+            }
+
+            &-text {
+                color: $color-primary-500;
+                font-weight: $fw-medium;
+                font-size: $fs-md;
             }
         }
 
@@ -946,26 +993,21 @@ h5 {
     .section-inner {
         position: relative;
         z-index: 10;
-    }
 
-    h2,
-    h5 {
-        color: $color-white;
-    }
-
-    h2 {
-        font-weight: $fw-light;
-
-        span {
-            font-weight: $fw-medium;
+        h2 {
+            color: $color-white;
         }
-    }
 
-    .text {
-        max-width: 75%;
-        margin: 0 auto $base * 14;
-        line-height: 2;
-        font-size: $fs-md;
+        .section-subtitle {
+            color: $color-white;
+        }
+
+        .text {
+            max-width: 75%;
+            margin: 0 auto $base * 14;
+            line-height: 2;
+            font-size: $fs-md;
+        }
     }
 }
 // === / GET-STARTED ===
@@ -985,9 +1027,11 @@ h5 {
         &-title {
             @include quicksand();
 
+            text-transform: none;
             color: $color-secondary-900;
             font-size: $fs-lg;
             font-weight: $fw-bold;
+            letter-spacing: normal;
             margin-bottom: $base * 5;
         }
 
