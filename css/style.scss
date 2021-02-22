@@ -16,85 +16,151 @@
 }
 // === / MIXINS ===
 
-// === VARIABLES ===
-$base: 4px;
+// === FUNCTIONS ===
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
 
+@function rem($num) {
+    @return (strip-unit($num) / 16) * 1rem;
+}
+// === / FUNCTIONS ===
+
+// === VARIABLES ===
+$base: rem(4px);
+
+// Breakpoints
+$breakpoint-sm-min: 576px;
+$breakpoint-xs-max: $breakpoint-sm-min - 1;
+$breakpoint-md-min: 768px;
+$breakpoint-sm-max: $breakpoint-md-min - 1;
+$breakpoint-lg-min: 992px;
+$breakpoint-md-max: $breakpoint-lg-min - 1;
+$breakpoint-xl-min: 1200px;
+$breakpoint-lg-max: $breakpoint-xl-min - 1;
+$breakpoint-xxl-min: 1400px;
+$breakpoint-xl-max: $breakpoint-xxl-min - 1;
+
+// Font Weight
 $fw-light: 300;
 $fw-regular: 400;
 $fw-medium: 500;
 $fw-bold: 700;
 
-$fs-sm: 12px;
-$fs-md: 15px;
-$fs-lg: 18px;
-$fs-xl: 48px;
-
-$padding-vertical-xs: $base * 5;
-$padding-vertical-sm: $base * 15;
-$padding-vertical: $base * 30;
+// Font Size
+$fs-xxs: rem(10px);
+$fs-xs: rem(12px);
+$fs-sm: rem(15px);
+$fs-md: rem(18px);
+$fs-lg: rem(24px);
+$fs-xl: rem(36px);
+$fs-xxl: rem(48px);
 
 $transition: 0.2s;
 
 // White
 $color-white: #fff;
 // Red
-$color-danger-400: #ffd7d7;
-$color-danger-500: #d43f3f;
+$color-red-400: #ffd7d7;
+$color-red-500: #d43f3f;
 // Cian
 $color-cian-500: #35aaff;
 // Yellow
-$color-warning-500: #ffc735;
+$color-yellow-500: #ffc735;
+
 // Gray
-$color-primary-200: #e8ecf4; // фон кнопок grayscale
-$color-primary-300: #d1d6e3; // цвет серой кнопки без bg (тень от кнопок) / цвет неактивных точек слайдера
-$color-primary-400: #b6bac7; // цвет иконок в хедере / цвет текста в features / текст кнопок grayscale
-$color-primary-500: #8d96bd; // цвет основного текста
-$color-primary-600: #7382a3; // цвет текста хедера и футера / текст в input
-$color-primary-700: #495274; // цвет активного тригера в аккордионе
+$color-gray-200: #e8ecf4; // фон кнопок grayscale
+$color-gray-300: #d1d6e3; // цвет серой кнопки без bg (тень от кнопок) / цвет неактивных точек слайдера
+$color-gray-400: #b6bac7; // цвет иконок в хедере / цвет текста в features / текст кнопок grayscale
+$color-gray-500: #8d96bd; // цвет основного текста
+$color-gray-600: #7382a3; // цвет текста хедера и футера / текст в input
+$color-gray-700: #495274; // цвет активного тригера в аккордионе
+
 // Blue
-$color-secondary-100: #f5f8ff; // фон plan-n-manage / фон blog / / фон newsletters / низ градиента в quotes
-$color-secondary-200: #f1f5ff; // фон hero-image / тень item-quotes
-$color-secondary-300: #e9efff; // фон правой части stats / тень в blog / верх градиента в quotes
-$color-secondary-400: #d2e1ff; // фоновый цвет синих кнопок (и разделителя) / тень картинок в blog / текст кнопок no-bg-inverted
-$color-secondary-500: #a0b4ff; // границы кнопки no-bg-inverted
-$color-secondary-600: #6888ff; // фон левой части stats / текст правой части stats / верх градиента get started
-$color-secondary-700: #4c85ff; // цвет текста синих кнопок (и лого хедера и футера) / цвет активных точек слайдера / низ градиента get started
-$color-secondary-800: #4074f8; // заголовки блоков в features
-$color-secondary-900: #3d4f9f; // цвет заголовков
+$color-blue-100: #f5f8ff; // фон plan-n-manage / фон blog / / фон newsletters / низ градиента в quotes
+$color-blue-200: #f1f5ff; // фон hero-image / тень item-quotes
+$color-blue-300: #e9efff; // фон правой части stats / тень в blog / верх градиента в quotes
+$color-blue-400: #d2e1ff; // фоновый цвет синих кнопок (и разделителя) / тень картинок в blog / текст кнопок no-bg-inverted
+$color-blue-500: #a0b4ff; // границы кнопки no-bg-inverted
+$color-blue-600: #6888ff; // фон левой части stats / текст правой части stats / верх градиента get started
+$color-blue-700: #4c85ff; // цвет текста синих кнопок (и лого хедера и футера) / цвет активных точек слайдера / низ градиента get started
+$color-blue-800: #4074f8; // заголовки блоков в features
+$color-blue-900: #3d4f9f; // цвет заголовков
 // === / VARIABLES ===
 
 // === COMMON ===
+// html {
+//     @media (max-width: $breakpoint-md-max) {
+//         font-size: 14px;
+//     }
+
+//     @media (max-width: $breakpoint-sm-max) {
+//         font-size: 12px;
+//     }
+// }
+
 body {
     @include roboto;
 
-    color: $color-primary-500;
+    color: $color-gray-500;
 }
 
 .section-outer {
-    border-bottom: 1px solid $color-secondary-400;
+    padding: 0 $base * 5;
+    border-bottom: 1px solid $color-blue-400;
 }
 
 .section-inner {
     max-width: 900px;
     margin: 0 auto;
-    padding-top: $padding-vertical;
-    padding-bottom: $padding-vertical;
 
     &--wide {
         max-width: 1200px;
     }
 }
 
+.vertical-indent {
+    &--sm {
+        padding-top: $base * 5;
+        padding-bottom: $base * 5;
+    }
+    &--md {
+        padding-top: $base * 15;
+        padding-bottom: $base * 15;
+    }
+    &--lg {
+        padding-top: $base * 30;
+        padding-bottom: $base * 30;
+    }
+
+    @media (max-width: $breakpoint-md-max) {
+        &--sm {
+            padding-top: $base * 2;
+            padding-bottom: $base * 2;
+        }
+        &--md {
+            padding-top: $base * 9;
+            padding-bottom: $base * 9;
+        }
+        &--lg {
+            padding-top: $base * 18;
+            padding-bottom: $base * 18;
+        }
+    }
+}
+
+// vertical-indent vertical-indent--lg vertical-indent--md vertical-indent--sm
+
 .input {
     @include quicksand();
 
     padding: $base * 3 $base * 4;
-    font-size: $fs-sm;
+    font-size: $fs-xs;
     font-weight: $fw-bold;
-    color: $color-primary-600;
+    color: $color-gray-600;
     border: 1px solid transparent;
     box-sizing: border-box;
-    background: $color-primary-200;
+    background: $color-gray-200;
     border-radius: $base/2;
     outline: none;
 
@@ -114,7 +180,7 @@ body {
     padding: $base * 3 $base * 4;
     background: none;
     font-weight: $fw-bold;
-    font-size: $fs-sm;
+    font-size: $fs-xs;
     border-radius: $base/2;
     text-decoration: none;
     transition: $transition;
@@ -127,24 +193,24 @@ body {
     }
 
     &--primary {
-        color: $color-secondary-700;
-        background-color: $color-secondary-400;
+        color: $color-blue-700;
+        background-color: $color-blue-400;
 
         &:hover {
-            background-color: darken($color-secondary-400, 5%);
+            background-color: darken($color-blue-400, 5%);
         }
     }
 
     &--secondary {
-        background-color: $color-secondary-700;
+        background-color: $color-blue-700;
         color: $color-white;
 
         &:hover {
-            background-color: darken($color-secondary-700, 15%);
+            background-color: darken($color-blue-700, 15%);
         }
 
         &-inverted {
-            color: $color-secondary-700;
+            color: $color-blue-700;
             background-color: $color-white;
 
             &:hover {
@@ -154,40 +220,40 @@ body {
     }
 
     &--grayscale {
-        color: $color-primary-600;
-        background-color: $color-primary-200;
+        color: $color-gray-600;
+        background-color: $color-gray-200;
 
         &:hover {
-            background-color: darken($color-primary-200, 5%);
+            background-color: darken($color-gray-200, 5%);
         }
     }
 
     &--no-bg {
-        color: $color-primary-400;
-        border: 1px solid $color-primary-300;
+        color: $color-gray-400;
+        border: 1px solid $color-gray-300;
 
         &:hover {
-            color: darken($color-primary-400, 15%);
-            border-color: darken($color-primary-300, 15%);
+            color: darken($color-gray-400, 15%);
+            border-color: darken($color-gray-300, 15%);
         }
 
         &-inverted {
-            color: $color-secondary-400;
-            border-color: $color-secondary-500;
+            color: $color-blue-400;
+            border-color: $color-blue-500;
 
             &:hover {
-                color: lighten($color-secondary-400, 15%);
-                border-color: lighten($color-secondary-500, 15%);
+                color: lighten($color-blue-400, 15%);
+                border-color: lighten($color-blue-500, 15%);
             }
         }
     }
 
     &--danger {
-        color: $color-danger-500;
-        background-color: $color-danger-400;
+        color: $color-red-500;
+        background-color: $color-red-400;
 
         &:hover {
-            background-color: darken($color-danger-400, 5%);
+            background-color: darken($color-red-400, 5%);
         }
     }
 }
@@ -202,41 +268,22 @@ h6 {
     margin: 0;
     padding: 0;
     font-weight: $fw-regular;
-    color: $color-secondary-900;
+    color: $color-blue-900;
 }
 
 h2 {
     @include roboto();
-    font-size: 10px;
+    font-size: $fs-xxs;
     font-weight: $fw-medium;
     margin-bottom: $base * 4;
     letter-spacing: 1px;
     text-transform: uppercase;
-
-    // margin-bottom: $base * 7;
-    // font-size: 48px;
 }
-// h3 {
-//     margin-bottom: $base * 7;
-//     font-size: 36px;
-// }
-// h4 {
-//     margin-bottom: $base * 23;
-//     font-size: 24px;
-// }
-// h5 {
-//     @include roboto;
-//     font-size: 10px;
-//     font-weight: $fw-medium;
-//     margin-bottom: $base * 4;
-//     letter-spacing: 1px;
-//     text-transform: uppercase;
-// }
 
 .section-subtitle {
     @include quicksand();
-    color: $color-secondary-900;
-    font-size: 48px;
+    color: $color-blue-900;
+    font-size: $fs-xxl;
     margin-bottom: $base * 7;
     font-weight: $fw-light;
 
@@ -259,12 +306,12 @@ h2 {
         width: $base * 2;
         height: $base * 2;
         cursor: pointer;
-        background-color: $color-primary-300;
+        background-color: $color-gray-300;
         border-radius: 100%;
         transition: $transition;
 
         &--active {
-            background-color: $color-secondary-700;
+            background-color: $color-blue-700;
         }
 
         & + & {
@@ -301,29 +348,91 @@ h2 {
 
 // === HEADER ===
 .section-header {
-    .section-inner {
-        padding-top: $padding-vertical-xs;
-        padding-bottom: $padding-vertical-xs;
-    }
+    position: relative;
 }
 
 .main-navigation {
     display: flex;
     align-items: center;
-}
 
-.logo {
-    &__link {
-        display: block;
-        background-color: $color-secondary-700;
-        width: $base * 6;
-        height: $base * 6;
-        border-radius: 100%;
+    .logo {
+        margin: 0;
+
+        &__link {
+            display: block;
+            background-color: $color-blue-700;
+            width: $base * 6;
+            height: $base * 6;
+            border-radius: 100%;
+        }
+    }
+
+    &__inner-wrap {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        margin-left: $base * 18;
+
+        .section-header & {
+            @media (max-width: $breakpoint-md-max) {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                z-index: 10;
+                margin-left: 0;
+                padding: $base * 5;
+                background-color: $color-white;
+            }
+        }
+
+        @media (max-width: $breakpoint-md-max) {
+            flex-direction: column;
+
+            .nav,
+            .socials {
+                margin-bottom: $base * 5;
+            }
+
+            &,
+            .socials,
+            .btn-wrapper {
+                margin-left: 0;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-md-max) {
+        .section-footer & {
+            flex-direction: column;
+
+            .logo {
+                margin-bottom: $base * 4;
+            }
+        }
     }
 }
 
-.nav {
-    margin-left: $base * 18;
+.btn-burger {
+    display: none;
+    margin-left: auto;
+    padding: $base * 3;
+
+    &__line {
+        display: block;
+        width: $base * 5;
+        height: $base / 2;
+        background-color: $color-blue-700;
+
+        & + & {
+            margin-top: $base;
+        }
+    }
+
+    @media (max-width: $breakpoint-md-max) {
+        display: block;
+    }
 }
 
 .nav-wrapper {
@@ -333,25 +442,25 @@ h2 {
 
     &__item {
         & + & {
-            margin-left: $base * 10;
+            margin-left: $base * 8;
         }
 
         &-link {
             @include quicksand;
 
-            font-size: $fs-sm;
+            font-size: $fs-xs;
             font-weight: $fw-medium;
-            color: $color-primary-600;
+            color: $color-gray-600;
             text-decoration: none;
             transition: $transition;
 
             &:hover {
-                color: $color-secondary-700;
+                color: $color-blue-700;
             }
 
             &--active {
                 font-weight: $fw-bold;
-                color: $color-secondary-700;
+                color: $color-blue-700;
             }
         }
     }
@@ -374,13 +483,13 @@ h2 {
 
         &-link {
             path {
-                fill: $color-primary-400;
+                fill: $color-gray-400;
                 transition: $transition;
             }
 
             &:hover {
                 path {
-                    fill: $color-secondary-700;
+                    fill: $color-blue-700;
                 }
             }
         }
@@ -395,6 +504,7 @@ h2 {
 // === HERO-IMAGE ===
 .section-hero-image {
     position: relative;
+    padding: 0;
 
     .dots {
         position: absolute;
@@ -415,14 +525,6 @@ h2 {
         background-repeat: no-repeat;
 
         &-content {
-            // .section-subtitle {
-            //     font-weight: $fw-light;
-
-            //     span {
-            //         font-weight: $fw-medium;
-            //     }
-            // }
-
             .text {
                 max-width: 55%;
                 margin: 0 auto $base * 5;
@@ -440,7 +542,7 @@ h2 {
     height: $base * 13;
     background-color: $color-white;
     border-radius: 100%;
-    box-shadow: 0 $base * 2 $base * 12 rgba($color-primary-300, 0.6);
+    box-shadow: 0 $base * 2 $base * 12 rgba($color-gray-300, 0.6);
 
     svg {
         margin-top: $base/2;
@@ -459,8 +561,6 @@ h2 {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-top: $padding-vertical-sm;
-        padding-bottom: $padding-vertical-sm;
 
         a {
             opacity: 0.3;
@@ -468,6 +568,18 @@ h2 {
 
             &:hover {
                 opacity: 1;
+            }
+        }
+
+        @media (max-width: $breakpoint-xs-max) {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            a {
+                margin-top: $base * 3;
+                margin-bottom: $base * 3;
+                flex-basis: 45%;
+                text-align: center;
             }
         }
     }
@@ -478,34 +590,39 @@ h2 {
 .section-plan-and-manage {
     position: relative;
     overflow: hidden;
-    background-color: $color-secondary-100;
+    background-color: $color-blue-100;
 
     &__content {
-        width: 50%;
-    }
+        width: 60%;
 
-    .aside-image {
-        position: absolute;
-        top: 0;
-        left: 50%;
-    }
+        .aside-image {
+            position: absolute;
+            top: 0;
+            left: 50%;
+        }
 
-    // .section-subtitle {
-    //     font-weight: $fw-light;
+        .text {
+            margin-bottom: $base * 12;
+            line-height: 2;
+        }
 
-    //     span {
-    //         font-weight: $fw-medium;
-    //     }
-    // }
+        .btn-group {
+            svg {
+                margin-left: $base;
+            }
+        }
 
-    .text {
-        margin-bottom: $base * 12;
-        line-height: 2;
-    }
+        @media (min-width: $breakpoint-lg-min) {
+            width: 50%;
+        }
 
-    .btn-group {
-        svg {
-            margin-left: $base;
+        @media (max-width: $breakpoint-xs-max) {
+            width: 85%;
+
+            .aside-image {
+                top: -23%;
+                left: 30%;
+            }
         }
     }
 }
@@ -517,8 +634,16 @@ h2 {
     // small subtitle
     .section-subtitle {
         font-weight: $fw-medium;
-        font-size: 24px;
+        font-size: $fs-lg;
         margin-bottom: $base * 23;
+
+        @media (max-width: $breakpoint-md-max) {
+            margin-bottom: $base * 15;
+        }
+
+        @media (max-width: $breakpoint-xs-max) {
+            margin-bottom: $base * 8;
+        }
     }
 
     .btns {
@@ -547,7 +672,7 @@ h2 {
             width: $base * 7;
             height: 1px;
             content: "";
-            background-color: $color-secondary-400;
+            background-color: $color-blue-400;
         }
 
         &-icon {
@@ -558,23 +683,50 @@ h2 {
             width: $base * 17;
             height: $base * 17;
             border-radius: 100%;
-            background-color: $color-secondary-100;
+            background-color: $color-blue-100;
         }
 
         &-title {
             @include roboto();
 
-            color: $color-secondary-800;
-            font-size: $fs-md;
+            color: $color-blue-800;
+            font-size: $fs-sm;
             font-weight: $fw-bold;
             margin-bottom: $base * 7;
         }
 
         &-text {
-            color: $color-primary-400;
-            font-size: $fs-sm;
+            color: $color-gray-400;
+            font-size: $fs-xs;
             font-weight: $fw-medium;
             line-height: 2;
+        }
+
+        @media (max-width: $breakpoint-xs-max) {
+            margin-top: $base * 4;
+            margin-bottom: $base * 4;
+
+            &-icon,
+            &-title {
+                margin-bottom: $base * 4;
+            }
+
+            &:not(:first-child)::before {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-md-max) {
+        margin-bottom: $base * 15;
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+        flex-wrap: wrap;
+        margin-bottom: $base * 8;
+
+        &__item {
+            flex-basis: 40%;
         }
     }
 }
@@ -582,8 +734,8 @@ h2 {
 .or-block {
     display: inline-flex;
     align-items: center;
-    color: $color-primary-400;
-    font-size: $fs-sm;
+    color: $color-gray-400;
+    font-size: $fs-xs;
     font-weight: $fw-medium;
     line-height: $base * 10;
     letter-spacing: 1px;
@@ -595,7 +747,7 @@ h2 {
         margin-right: $base * 4;
         width: $base * 4;
         height: 1px;
-        background-color: $color-secondary-400;
+        background-color: $color-blue-400;
     }
     &::after {
         display: block;
@@ -603,7 +755,7 @@ h2 {
         margin-left: $base * 4;
         width: $base * 4;
         height: 1px;
-        background-color: $color-secondary-400;
+        background-color: $color-blue-400;
     }
 }
 // === / FEATURES ===
@@ -613,20 +765,33 @@ h2 {
     @include quicksand;
 
     display: flex;
-    background-color: $color-secondary-300;
+    padding: 0;
+    background-color: $color-blue-300;
 
     &__icon {
     }
 
     &__number {
-        font-size: $fs-xl;
+        font-size: $fs-xxl;
         margin: $base * 6 0;
     }
     &__text {
-        width: 30%;
-        font-size: $fs-lg;
+        width: 50%;
+        font-size: $fs-md;
         font-weight: $fw-medium;
         line-height: 1.4;
+
+        @media (max-width: $breakpoint-xl-min) {
+            width: 60%;
+        }
+
+        @media (max-width: $breakpoint-md-min) {
+            width: 70%;
+        }
+
+        @media (max-width: $breakpoint-xs-max) {
+            width: 100%;
+        }
     }
 
     &__left,
@@ -641,51 +806,64 @@ h2 {
         align-items: flex-end;
         color: $color-white;
         text-align: right;
-        background-color: $color-secondary-600;
+        background-color: $color-blue-600;
     }
 
     &__right {
-        color: $color-secondary-600;
+        color: $color-blue-600;
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+        &__left,
+        &__right {
+            align-items: center;
+            text-align: center;
+            padding: $base * 8 $base * 6;
+        }
     }
 }
 // === / STATS ===
 
 // === BLOG ===
 .section-blog {
-    background-color: $color-secondary-100;
+    background-color: $color-blue-100;
 
     .section-subtitle {
         font-weight: $fw-medium;
-        font-size: 24px;
+        font-size: $fs-lg;
         margin-bottom: $base * 23;
-    }
 
-    // h4 {
-    //     font-weight: $fw-medium;
-    // }
+        @media (max-width: $breakpoint-md-max) {
+            margin-bottom: $base * 15;
+        }
+    }
 }
 
 .slider-wrapper {
-    margin-bottom: $base * 25;
     position: relative;
+    margin-bottom: $base * 25;
+
+    @media (max-width: $breakpoint-md-max) {
+        margin-bottom: $base * 15;
+    }
 }
 
 .slider-blog {
     @include list-null();
 
-    margin-bottom: $base * 25;
     background-color: $color-white;
-    box-shadow: 0 $base * 4 $base * 12 $color-secondary-300;
+    box-shadow: 0 $base * 4 $base * 12 $color-blue-300;
 
     &__item {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         padding: $base * 16 $base * 10;
 
-        &-gallery,
-        &-content {
-            flex-basis: 50%;
-        }
+        // &-gallery,
+        // &-content {
+        //     flex-basis: 50%;
+        // }
 
         &-gallery {
             display: grid;
@@ -698,10 +876,10 @@ h2 {
                 display: block;
                 overflow: hidden;
                 border-radius: $base;
-                box-shadow: 0 $base * 4 $base * 25
-                    rgba($color-secondary-400, 0.5);
+                box-shadow: 0 $base * 4 $base * 25 rgba($color-blue-400, 0.5);
 
-                .loupe {
+                &::after {
+                    content: "";
                     position: absolute;
                     top: 50%;
                     left: 50%;
@@ -716,10 +894,8 @@ h2 {
                     transition: $transition;
                 }
 
-                &:hover {
-                    .loupe {
-                        opacity: 1;
-                    }
+                &:hover::after {
+                    opacity: 1;
                 }
 
                 img {
@@ -745,7 +921,7 @@ h2 {
                     &::before {
                         background: linear-gradient(
                             transparent,
-                            $color-warning-500
+                            $color-yellow-500
                         );
                     }
                 }
@@ -757,7 +933,7 @@ h2 {
                     &::before {
                         background: linear-gradient(
                             transparent,
-                            $color-danger-500
+                            $color-red-500
                         );
                     }
                 }
@@ -774,20 +950,41 @@ h2 {
                     }
                 }
             }
+
+            @media (max-width: $breakpoint-md-max) {
+                grid-template-rows: repeat(2, $base * 26);
+                grid-template-columns: repeat(3, $base * 26);
+                grid-gap: $base * 2;
+            }
         }
 
         &-content {
-            margin-left: 5%;
+            flex-grow: 1;
+            margin-left: $base * 7;
 
             h3 {
-                font-size: 36px;
-                margin-bottom: $base * 7;
+                font-size: $fs-xl;
+                margin-bottom: $base * 6;
             }
 
             .text {
-                margin-bottom: $base * 7;
-                font-size: $fs-md;
+                margin-bottom: $base * 6;
+                font-size: $fs-sm;
                 line-height: 2;
+            }
+        }
+
+        @media (max-width: $breakpoint-xs-max) {
+            flex-direction: column;
+            padding: $base * 6 $base * 6;
+
+            &-content {
+                margin-left: 0;
+                text-align: center;
+            }
+
+            &-gallery {
+                margin-bottom: $base * 6;
             }
         }
     }
@@ -812,12 +1009,16 @@ h2 {
         margin-left: $base * 16;
         transform: translateY(-50%) rotate(180deg);
     }
+
+    @media (max-width: $breakpoint-lg-max) {
+        display: none;
+    }
 }
 // === / BLOG ===
 
 // === QUOTES ===
 .section-quotes {
-    background: linear-gradient($color-secondary-300, $color-secondary-100);
+    background: linear-gradient($color-blue-300, $color-blue-100);
 
     .section-inner {
         display: flex;
@@ -825,7 +1026,7 @@ h2 {
 
         .section-subtitle {
             font-weight: $fw-medium;
-            font-size: 36px;
+            font-size: $fs-xl;
         }
     }
 
@@ -841,7 +1042,7 @@ h2 {
 
         .text {
             line-height: 2;
-            font-size: $fs-sm;
+            font-size: $fs-xs;
             font-weight: $fw-medium;
         }
     }
@@ -855,14 +1056,13 @@ h2 {
     &__item {
         position: relative;
         padding: $base * 10 $base * 17 $base * 15;
-        // border: 1px solid $color-secondary-400;
         background-color: $color-white;
-        box-shadow: 0 $base $base * 12 $color-secondary-400;
+        box-shadow: 0 $base $base * 12 $color-blue-400;
 
         &-text {
-            font-size: $fs-md;
+            font-size: $fs-sm;
             line-height: 2;
-            color: $color-primary-600;
+            color: $color-gray-600;
         }
 
         &-photo {
@@ -873,11 +1073,10 @@ h2 {
             left: 50%;
             width: $base * 15;
             height: $height;
-            margin-top: -$height/2;
             overflow: hidden;
             border-radius: 100%;
             background-color: $color-white;
-            transform: translateX(-50%);
+            transform: translate(-50%, -$height/2);
         }
     }
 }
@@ -888,8 +1087,7 @@ h2 {
     .section-inner {
         .section-subtitle {
             font-weight: $fw-medium;
-            font-size: 24px;
-            // margin-bottom: $base * 23;
+            font-size: $fs-lg;
         }
     }
 }
@@ -900,11 +1098,11 @@ h2 {
     &__item {
         $parent: &;
 
-        border-bottom: 1px solid $color-secondary-400;
+        border-bottom: 1px solid $color-blue-400;
 
         &--active {
             .arrow {
-                stroke: $color-primary-700;
+                stroke: $color-gray-700;
             }
 
             #{$parent}-trigger {
@@ -912,13 +1110,13 @@ h2 {
                     transform: rotate(0);
 
                     .arrow {
-                        stroke: $color-primary-700;
+                        stroke: $color-gray-700;
                     }
                 }
 
                 &-text {
-                    color: $color-primary-700;
-                    font-size: $fs-md;
+                    color: $color-gray-700;
+                    font-size: $fs-sm;
                     font-weight: $fw-bold;
                 }
             }
@@ -942,14 +1140,14 @@ h2 {
                 transform: rotate(180deg);
 
                 .arrow {
-                    stroke: $color-primary-500;
+                    stroke: $color-gray-500;
                 }
             }
 
             &-text {
-                color: $color-primary-500;
+                color: $color-gray-500;
                 font-weight: $fw-medium;
-                font-size: $fs-md;
+                font-size: $fs-sm;
             }
         }
 
@@ -976,7 +1174,7 @@ h2 {
 .section-get-started {
     position: relative;
     color: $color-white;
-    background: linear-gradient($color-secondary-600, $color-secondary-700);
+    background: linear-gradient($color-blue-600, $color-blue-700);
     text-align: center;
 
     &::before {
@@ -1006,7 +1204,7 @@ h2 {
             max-width: 75%;
             margin: 0 auto $base * 14;
             line-height: 2;
-            font-size: $fs-md;
+            font-size: $fs-sm;
         }
     }
 }
@@ -1019,6 +1217,10 @@ h2 {
     .section-inner {
         display: flex;
         justify-content: space-between;
+
+        @media (max-width: $breakpoint-md-max) {
+            flex-direction: column;
+        }
     }
 
     &__left {
@@ -1028,33 +1230,59 @@ h2 {
             @include quicksand();
 
             text-transform: none;
-            color: $color-secondary-900;
-            font-size: $fs-lg;
+            color: $color-blue-900;
+            font-size: $fs-md;
             font-weight: $fw-bold;
             letter-spacing: normal;
             margin-bottom: $base * 5;
         }
 
         &-text {
-            font-size: $fs-md;
+            font-size: $fs-sm;
             line-height: 2;
+        }
+
+        @media (max-width: $breakpoint-md-max) {
+            text-align: center;
+            margin-bottom: $base * 5;
         }
     }
 
     &__right {
         flex-basis: 50%;
+
+        @media (max-width: $breakpoint-md-max) {
+            padding: 0 $base * 25;
+        }
+
+        @media (max-width: $breakpoint-sm-max) {
+            padding: 0;
+        }
     }
 }
 
 .form-newsletter {
     display: flex;
 
+    @media (max-width: $breakpoint-xs-max) {
+        flex-direction: column;
+    }
+
     &__input {
         flex-grow: 1;
+
+        @media (max-width: $breakpoint-xs-max) {
+            margin-bottom: $base * 4;
+            text-align: center;
+        }
     }
 
     &__btn {
         margin-left: $base * 3;
+
+        @media (max-width: $breakpoint-xs-max) {
+            margin-left: 0;
+        }
     }
 }
 // === / NEWSLETTER ===
@@ -1062,11 +1290,6 @@ h2 {
 // === FOOTER ===
 .section-footer {
     border-bottom: 0;
-
-    .section-inner {
-        padding-top: $padding-vertical-sm;
-        padding-bottom: $padding-vertical-sm;
-    }
 }
 
 .copyright {
@@ -1074,8 +1297,14 @@ h2 {
 
     margin-top: $base * 7;
     margin-left: $base * 24;
-    font-size: $fs-sm;
+    font-size: $fs-xs;
     font-weight: $fw-medium;
-    color: rgba($color-primary-500, 0.7);
+    color: rgba($color-gray-500, 0.7);
+
+    @media (max-width: $breakpoint-md-max) {
+        margin-left: 0;
+        text-align: center;
+        margin-top: $base * 12;
+    }
 }
 // === / FOOTER ===
