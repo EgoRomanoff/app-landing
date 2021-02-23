@@ -1,3 +1,4 @@
+@import url("../css/normalize.css");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap");
 
 // === MIXINS ===
@@ -31,15 +32,15 @@ $base: rem(4px);
 
 // Breakpoints
 $breakpoint-sm-min: 576px;
-$breakpoint-xs-max: $breakpoint-sm-min - 1;
+$breakpoint-xs-max: $breakpoint-sm-min - 1; // 575
 $breakpoint-md-min: 768px;
-$breakpoint-sm-max: $breakpoint-md-min - 1;
+$breakpoint-sm-max: $breakpoint-md-min - 1; // 767
 $breakpoint-lg-min: 992px;
-$breakpoint-md-max: $breakpoint-lg-min - 1;
+$breakpoint-md-max: $breakpoint-lg-min - 1; // 991
 $breakpoint-xl-min: 1200px;
-$breakpoint-lg-max: $breakpoint-xl-min - 1;
+$breakpoint-lg-max: $breakpoint-xl-min - 1; // 1199
 $breakpoint-xxl-min: 1400px;
-$breakpoint-xl-max: $breakpoint-xxl-min - 1;
+$breakpoint-xl-max: $breakpoint-xxl-min - 1; // 1399
 
 // Font Weight
 $fw-light: 300;
@@ -120,31 +121,42 @@ body {
 }
 
 .vertical-indent {
+    @mixin vertical-indent($size) {
+        padding-top: $size;
+        padding-bottom: $size;
+    }
+
     &--sm {
-        padding-top: $base * 5;
-        padding-bottom: $base * 5;
+        @include vertical-indent($base * 5);
     }
     &--md {
-        padding-top: $base * 15;
-        padding-bottom: $base * 15;
+        @include vertical-indent($base * 15);
     }
     &--lg {
-        padding-top: $base * 30;
-        padding-bottom: $base * 30;
+        @include vertical-indent($base * 40);
     }
 
     @media (max-width: $breakpoint-md-max) {
         &--sm {
-            padding-top: $base * 2;
-            padding-bottom: $base * 2;
+            @include vertical-indent($base * 2);
         }
         &--md {
-            padding-top: $base * 9;
-            padding-bottom: $base * 9;
+            @include vertical-indent($base * 9);
         }
         &--lg {
-            padding-top: $base * 18;
-            padding-bottom: $base * 18;
+            @include vertical-indent($base * 20);
+        }
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+        &--sm {
+            @include vertical-indent($base * 2);
+        }
+        &--md {
+            @include vertical-indent($base * 6);
+        }
+        &--lg {
+            @include vertical-indent($base * 12);
         }
     }
 }
@@ -185,6 +197,7 @@ body {
     text-decoration: none;
     transition: $transition;
     white-space: nowrap;
+    outline: none;
     cursor: pointer;
 
     &--size-lg {
@@ -346,11 +359,7 @@ h2 {
 }
 // === / COMMON ===
 
-// === HEADER ===
-.section-header {
-    position: relative;
-}
-
+// === NAVIGATION ===
 .main-navigation {
     display: flex;
     align-items: center;
@@ -414,27 +423,6 @@ h2 {
     }
 }
 
-.btn-burger {
-    display: none;
-    margin-left: auto;
-    padding: $base * 3;
-
-    &__line {
-        display: block;
-        width: $base * 5;
-        height: $base / 2;
-        background-color: $color-blue-700;
-
-        & + & {
-            margin-top: $base;
-        }
-    }
-
-    @media (max-width: $breakpoint-md-max) {
-        display: block;
-    }
-}
-
 .nav-wrapper {
     @include list-null();
 
@@ -461,6 +449,19 @@ h2 {
             &--active {
                 font-weight: $fw-bold;
                 color: $color-blue-700;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+        flex-direction: column;
+        text-align: center;
+
+        &__item {
+            margin-bottom: $base * 2;
+
+            & + & {
+                margin-left: 0;
             }
         }
     }
@@ -499,6 +500,35 @@ h2 {
 .btn-wrapper {
     margin-left: $base * 11;
 }
+// === / NAVIGATION ===
+
+// === HEADER ===
+.section-header {
+    position: relative;
+}
+
+.btn-burger {
+    display: none;
+    margin-left: auto;
+    padding: $base * 3;
+    border: none;
+
+    &__line {
+        display: block;
+        width: $base * 5;
+        height: $base / 2;
+        background-color: $color-gray-400;
+
+        & + & {
+            margin-top: $base;
+        }
+    }
+
+    @media (max-width: $breakpoint-md-max) {
+        display: block;
+    }
+}
+
 // === / HEADER ===
 
 // === HERO-IMAGE ===
@@ -519,7 +549,7 @@ h2 {
 
     &__item {
         text-align: center;
-        height: $base * 130;
+        // height: $base * 130;
         background-position: 100% 100%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -540,6 +570,7 @@ h2 {
     justify-content: center;
     width: $base * 13;
     height: $base * 13;
+    margin-bottom: $base * 30;
     background-color: $color-white;
     border-radius: 100%;
     box-shadow: 0 $base * 2 $base * 12 rgba($color-gray-300, 0.6);
@@ -549,6 +580,14 @@ h2 {
         margin-left: $base/2;
         width: $base * 3;
         height: $base * 3;
+    }
+
+    @media (max-width: $breakpoint-md-max) {
+        margin-bottom: $base * 20;
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+        margin-bottom: $base * 10;
     }
 }
 // === / HERO-IMAGE ===
@@ -571,7 +610,7 @@ h2 {
             }
         }
 
-        @media (max-width: $breakpoint-xs-max) {
+        @media (max-width: $breakpoint-sm-max) {
             flex-wrap: wrap;
             justify-content: center;
 
@@ -591,6 +630,9 @@ h2 {
     position: relative;
     overflow: hidden;
     background-color: $color-blue-100;
+    // background-image: url(../img/img-plan-and-manage.png);
+    // background-position: 90% -80%;
+    // background-repeat: no-repeat;
 
     &__content {
         width: 60%;
@@ -617,11 +659,11 @@ h2 {
         }
 
         @media (max-width: $breakpoint-xs-max) {
-            width: 85%;
+            text-align: center;
+            width: 100%;
 
             .aside-image {
-                top: -23%;
-                left: 30%;
+                display: none;
             }
         }
     }
@@ -895,7 +937,7 @@ h2 {
                 }
 
                 &:hover::after {
-                    opacity: 1;
+                    opacity: 0.85;
                 }
 
                 img {
@@ -956,6 +998,11 @@ h2 {
                 grid-template-columns: repeat(3, $base * 26);
                 grid-gap: $base * 2;
             }
+
+            @media (max-width: $breakpoint-xs-max) {
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         &-content {
@@ -974,18 +1021,25 @@ h2 {
             }
         }
 
-        @media (max-width: $breakpoint-xs-max) {
+        @media (max-width: $breakpoint-sm-max) {
             flex-direction: column;
-            padding: $base * 6 $base * 6;
 
             &-content {
                 margin-left: 0;
                 text-align: center;
+
+                .text {
+                    text-align: left;
+                }
             }
 
             &-gallery {
                 margin-bottom: $base * 6;
             }
+        }
+
+        @media (max-width: $breakpoint-xs-max) {
+            padding: $base * 6 $base * 6;
         }
     }
 }
@@ -1028,6 +1082,11 @@ h2 {
             font-weight: $fw-medium;
             font-size: $fs-xl;
         }
+
+        @media (max-width: $breakpoint-sm-max) {
+            text-align: center;
+            flex-direction: column;
+        }
     }
 
     &__left,
@@ -1042,9 +1101,21 @@ h2 {
 
         .text {
             line-height: 2;
-            font-size: $fs-xs;
+            font-size: $fs-sm;
             font-weight: $fw-medium;
         }
+
+        @media (max-width: $breakpoint-sm-max) {
+            margin-bottom: $base * 4;
+        }
+    }
+
+    @media (max-width: $breakpoint-sm-max) {
+
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+
     }
 }
 
@@ -1077,6 +1148,11 @@ h2 {
             border-radius: 100%;
             background-color: $color-white;
             transform: translate(-50%, -$height/2);
+        }
+
+        @media (max-width: $breakpoint-xs-max) {
+            text-align: left;
+            padding: $base * 10;
         }
     }
 }
@@ -1149,6 +1225,10 @@ h2 {
                 font-weight: $fw-medium;
                 font-size: $fs-sm;
             }
+
+            @media (max-width: $breakpoint-xs-max) {
+                padding: $base * 4;
+            }
         }
 
         &-content {
@@ -1164,6 +1244,16 @@ h2 {
 
             &-btn {
                 margin-left: $base * 15;
+
+                @media (max-width: $breakpoint-xs-max) {
+                    text-align: center;
+                    margin: $base * 4 0 0;
+                }
+            }
+
+            @media (max-width: $breakpoint-xs-max) {
+                flex-direction: column;
+                padding: 0 0 $base * 6;
             }
         }
     }
@@ -1205,6 +1295,11 @@ h2 {
             margin: 0 auto $base * 14;
             line-height: 2;
             font-size: $fs-sm;
+
+            @media (max-width: $breakpoint-xs-max) {
+                max-width: 90%;
+                margin: 0 auto $base * 7;
+            }
         }
     }
 }
