@@ -1,5 +1,5 @@
 @import url("../css/normalize.css");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap");
 
 // === MIXINS ===
 @mixin roboto {
@@ -550,6 +550,7 @@ h2 {
     &__item {
         text-align: center;
         // height: $base * 130;
+        background-image: url(../upload/hero-image-1.webp);
         background-position: 100% 100%;
         background-size: cover;
         background-repeat: no-repeat;
