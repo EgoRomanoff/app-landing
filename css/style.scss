@@ -104,6 +104,7 @@ body {
     @include roboto;
 
     color: $color-gray-500;
+    padding-top: $base * 20;
 }
 
 .section-outer {
@@ -138,7 +139,7 @@ body {
 
     @media (max-width: $breakpoint-md-max) {
         &--sm {
-            @include vertical-indent($base * 2);
+            @include vertical-indent($base * 5);
         }
         &--md {
             @include vertical-indent($base * 9);
@@ -150,7 +151,7 @@ body {
 
     @media (max-width: $breakpoint-xs-max) {
         &--sm {
-            @include vertical-indent($base * 2);
+            @include vertical-indent($base * 5);
         }
         &--md {
             @include vertical-indent($base * 6);
@@ -314,25 +315,36 @@ h2 {
 
     display: flex;
     justify-content: center;
+}
 
-    &__item {
+.swiper-pagination-bullet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $base * 5;
+    height: $base * 5;
+    cursor: pointer;
+    outline: none;
+
+    &::before {
+        content: '';
+        display: block;
         width: $base * 2;
         height: $base * 2;
-        cursor: pointer;
         background-color: $color-gray-300;
         border-radius: 100%;
         transition: $transition;
+    }
 
-        &--active {
-            background-color: $color-blue-700;
-        }
+    &-active::before {
+        background-color: $color-blue-700;
+    }
 
-        & + & {
-            margin-left: $base * 3;
-        }
+    & + & {
+        margin-left: $base;
     }
 }
-// TODO: Правильно настроить hover по макету
+
 .btn-group {
     display: inline-flex;
 
@@ -504,7 +516,32 @@ h2 {
 
 // === HEADER ===
 .section-header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    background-color: $color-white;
+
+    &::before {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        content: '';
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, .5);
+    }
+
+    &--active-nav {
+        &::before {
+            display: block;
+        }
+        .main-navigation__inner-wrap {
+            display: flex;
+        }
+    }
 }
 
 .btn-burger {
@@ -535,6 +572,7 @@ h2 {
 .section-hero-image {
     position: relative;
     padding: 0;
+    overflow: hidden;
 
     .dots {
         position: absolute;
@@ -547,9 +585,11 @@ h2 {
 .slider-hero-image {
     @include list-null();
 
+    display: flex;
+
     &__item {
+        min-width: 100%;
         text-align: center;
-        // height: $base * 130;
         background-image: url(../upload/hero-image-1.webp);
         background-position: 100% 100%;
         background-size: cover;
@@ -811,9 +851,6 @@ h2 {
     padding: 0;
     background-color: $color-blue-300;
 
-    &__icon {
-    }
-
     &__number {
         font-size: $fs-xxl;
         margin: $base * 6 0;
@@ -882,7 +919,7 @@ h2 {
     }
 }
 
-.slider-wrapper {
+.slider-blog {
     position: relative;
     margin-bottom: $base * 25;
 
@@ -891,16 +928,25 @@ h2 {
     }
 }
 
-.slider-blog {
-    @include list-null();
-
+.slider-blog-container {
+    position: relative;
     background-color: $color-white;
     box-shadow: 0 $base * 4 $base * 12 $color-blue-300;
+    overflow: hidden;
+
+}
+
+.slider-blog-wrapper {
+    @include list-null();
+
+    display: flex;
 
     &__item {
+        box-sizing: border-box;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        min-width: 100%;
         padding: $base * 16 $base * 10;
 
         // &-gallery,
@@ -1052,6 +1098,7 @@ h2 {
     width: $base * 10;
     height: $base * 10;
     background: url(../img/icon-blog-arrow.svg) no-repeat center;
+    outline: none;
 
     &--prev {
         right: 100%;
@@ -1074,6 +1121,7 @@ h2 {
 // === QUOTES ===
 .section-quotes {
     background: linear-gradient($color-blue-300, $color-blue-100);
+    overflow: hidden;
 
     .section-inner {
         display: flex;
@@ -1084,21 +1132,18 @@ h2 {
             font-size: $fs-xl;
         }
 
-        @media (max-width: $breakpoint-sm-max) {
+        @media (max-width: $breakpoint-md-max) {
             text-align: center;
             flex-direction: column;
         }
     }
 
-    &__left,
-    &__right {
-        flex-basis: 45%;
-    }
 
     &__left {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width: 45%;
 
         .text {
             line-height: 2;
@@ -1111,50 +1156,87 @@ h2 {
         }
     }
 
-    @media (max-width: $breakpoint-sm-max) {
+    &__right {
+        width: 50%;
 
+        .dots {
+            @media (min-width: $breakpoint-lg-min) {
+                margin-left: $base * 12;
+                width: 21vw;
+            }
+        }
     }
 
-    @media (max-width: $breakpoint-xs-max) {
+    &__left,
+    &__right {
+        @media (max-width: $breakpoint-md-max) {
+            width: 100%;
+        }
+    }
+}
 
+.slider-quotes-container {
+    width: calc(50vw + #{$base*12});
+    margin-bottom: $base*10;
+    // margin: -$base*12 0 $base*10 -$base*12;
+    overflow: hidden;
+
+    @media (max-width: $breakpoint-md-max) {
+        width: 110vw;
+        margin-top: 0;
     }
 }
 
 .slider-quotes {
     @include list-null();
 
-    margin-bottom: $base * 20;
+    display: flex;
 
     &__item {
-        position: relative;
-        padding: $base * 10 $base * 17 $base * 15;
-        background-color: $color-white;
-        box-shadow: 0 $base $base * 12 $color-blue-400;
+        min-width: 21vw;
+        padding: $base * 12;
+        text-align: left;
+        opacity: .3;
+        transition: opacity $transition;
 
-        &-text {
-            font-size: $fs-sm;
-            line-height: 2;
-            color: $color-gray-600;
+        &.swiper-slide-active {
+            opacity: 1;
         }
 
-        &-photo {
-            $height: $base * 15;
-
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            width: $base * 15;
-            height: $height;
-            overflow: hidden;
-            border-radius: 100%;
-            background-color: $color-white;
-            transform: translate(-50%, -$height/2);
+        @media (max-width: $breakpoint-md-max) {
+            min-width: 50vw;
         }
 
         @media (max-width: $breakpoint-xs-max) {
-            text-align: left;
             padding: $base * 10;
         }
+    }
+}
+
+.slider-quotes-item-content {
+    position: relative;
+    padding: $base * 10 $base * 17 $base * 15;
+    background-color: $color-white;
+    box-shadow: 0 $base $base * 12 $color-blue-400;
+
+    &__text {
+        font-size: $fs-sm;
+        line-height: 2;
+        color: $color-gray-600;
+    }
+
+    &__photo {
+        $height: $base * 15;
+
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: $base * 15;
+        height: $height;
+        overflow: hidden;
+        border-radius: 100%;
+        background-color: $color-white;
+        transform: translate(-50%, -$height/2);
     }
 }
 // === / QUOTES ===
@@ -1281,7 +1363,7 @@ h2 {
 
     .section-inner {
         position: relative;
-        z-index: 10;
+        z-index: 9;
 
         h2 {
             color: $color-white;
